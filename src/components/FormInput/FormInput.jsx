@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import style from "./FormAirports.module.css";
+import style from "./FormInput.module.css";
 
 export default function FormInput({ onSubmit }) {
   const [formData, setFormaData] = useState({
@@ -10,7 +10,10 @@ export default function FormInput({ onSubmit }) {
   });
 
   const [airportData, setAirportData] = useState([]);
-
+  const [selectedAirport, setSelectedAirport] = useState({
+    departure: "",
+    arrival: "",
+  });
   useEffect(() => {
     const fetchAirports = async () => {
       const url =
@@ -35,6 +38,29 @@ export default function FormInput({ onSubmit }) {
     }));
   };
 
+  const handleSelectedAirport = (e, field) => {
+    const value = e.target.value;
+
+    const airport = airportData.find(
+      (airport) =>
+        `${airport.code} - ${airport.name} ${airport.city}(${airport.country})` ===
+        value
+    );
+
+    if (airport) {
+      setFormaData((prevFormData) => ({
+        ...prevFormData,
+        [field]: airport.code,
+      }));
+    }
+
+    setSelectedAirport((prevSelected) => ({
+      ...prevSelected,
+      [field]: value,
+    }));
+    console.log(selectedAirport);
+  };
+
   return (
     <div className={style.formContainer}>
       <form /* onSubmit={handleSubmit} */>
@@ -44,8 +70,9 @@ export default function FormInput({ onSubmit }) {
             id="daparture"
             name="departure"
             list="airports"
-            value={formData.departure}
-            onChange={handleInputChange}
+            value={selectedAirport.departure}
+            onChange={(e) => handleInputChange(e)}
+            onInput={(e) => handleSelectedAirport(e, "departure")}
             required
             autoComplete="off"
           />
@@ -53,7 +80,10 @@ export default function FormInput({ onSubmit }) {
           <datalist id="airports">
             {airportData &&
               airportData.map((airport) => (
-                <option key={airport.code} value={airport.code}>
+                <option
+                  key={airport.code}
+                  value={`${airport.code} - ${airport.name} - ${airport.city} (${airport.country})`}
+                >
                   {airport.code} - {airport.name} - {airport.city}(
                   {airport.country})
                 </option>
@@ -67,8 +97,9 @@ export default function FormInput({ onSubmit }) {
             id="arrival"
             name="arrival"
             list="airports"
-            value={formData.arrival}
+            value={selectedAirport.arrival}
             onChange={handleInputChange}
+            onInput={(e) => handleSelectedAirport(e, "arrival")}
             required
             autoComplete="off"
           />

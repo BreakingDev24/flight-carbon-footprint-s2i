@@ -9,6 +9,23 @@ export default function FormInput({ onSubmit }) {
     passengers: 1,
   });
 
+  const [airportData, setAirportData] = useState([]);
+
+  useEffect(() => {
+    const fetchAirports = async () => {
+      const url =
+        "https://gist.githubusercontent.com/tdreyno/4278655/raw/7b0762c09b519f40397e4c3e100b097d861f5588/airports.json";
+      try {
+        const response = await axios.get(url);
+        setAirportData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchAirports();
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -32,6 +49,16 @@ export default function FormInput({ onSubmit }) {
             required
             autoComplete="off"
           />
+
+          <datalist id="airports">
+            {airportData &&
+              airportData.map((airport) => (
+                <option key={airport.code} value={airport.code}>
+                  {airport.code} - {airport.name} - {airport.city}(
+                  {airport.country})
+                </option>
+              ))}
+          </datalist>
         </div>
 
         <div className={style.inputContainer}>
@@ -45,6 +72,16 @@ export default function FormInput({ onSubmit }) {
             required
             autoComplete="off"
           />
+
+          <datalist id="airports">
+            {airportData &&
+              airportData.map((airport) => (
+                <option key={airport.code} value={airport.code}>
+                  {airport.code} - {airport.name} - {airport.city}(
+                  {airport.country})
+                </option>
+              ))}
+          </datalist>
         </div>
 
         <div className={style.inputNumberContainer}>

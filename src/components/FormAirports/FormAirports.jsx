@@ -9,6 +9,15 @@ export default function FormInput({ onSubmit }) {
     passengers: 1,
   });
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormaData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className={style.formContainer}>
       <form /* onSubmit={handleSubmit} */>
@@ -19,7 +28,7 @@ export default function FormInput({ onSubmit }) {
             name="departure"
             list="airports"
             value={formData.departure}
-            // onChange={handleInputChange}
+            onChange={handleInputChange}
             required
             autoComplete="off"
           />
@@ -31,8 +40,8 @@ export default function FormInput({ onSubmit }) {
             id="arrival"
             name="arrival"
             list="airports"
-            value={formData.departure}
-            // onChange={handleInputChange}
+            value={formData.arrival}
+            onChange={handleInputChange}
             required
             autoComplete="off"
           />
@@ -45,7 +54,7 @@ export default function FormInput({ onSubmit }) {
             id="passengers"
             name="passengers"
             value={formData.passengers}
-            // onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </div>
 

@@ -3,6 +3,8 @@ import FormInput from "../FormInput/FormInput";
 import FootprintCalculator from "../FootprintCalculator/FootprintCalculator";
 import style from "./FootprintForm.module.css";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAirports } from "../api/airportApi";
 export default function FootprintForm() {
   const [formData, setFormData] = useState({
     departure: "",
@@ -10,35 +12,21 @@ export default function FootprintForm() {
     passengers: 1,
   });
 
-  // const [apiData, setApiData] = useState({
-  //   departure: "",
-  //   arrival: "",
-  //   passengers: 1,
-  // });
+  const {
+    data: airportData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["airports"],
+    queryFn: fetchAirports,
+  });
 
-  const [airportData, setAirportData] = useState([]);
   const [selectedAirport, setSelectedAirport] = useState({
     departure: "",
     arrival: "",
   });
 
   const [flightData, setFlightData] = useState(null);
-
-  useEffect(() => {
-    const fetchAirports = async () => {
-      const url =
-        "https://gist.githubusercontent.com/tdreyno/4278655/raw/7b0762c09b519f40397e4c3e100b097d861f5588/airports.json";
-      try {
-        const response = await axios.get(url);
-        setAirportData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-      // console.log(airportData);
-    };
-
-    fetchAirports();
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -51,13 +39,7 @@ export default function FootprintForm() {
 
   const handleSelectedAirport = (e, field) => {
     const value = e.target.value;
-    // const airport = airportData.find(
-    //   (airport) =>
-    //     `${airport.code} - ${airport.name} - ${airport.city}(${airport.country})` ===
-    //     value
-    // );
-    // const airportCode = value.split(" - ")[0];
-    // console.log(field);
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       [field]: value,

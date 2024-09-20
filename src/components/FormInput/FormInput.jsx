@@ -3,13 +3,8 @@ import { useState, useEffect } from "react";
 import style from "./FormInput.module.css";
 
 export default function FormInput(props) {
-  const {
-    formData,
-    selectedAirport,
-    airportData,
-    handleInputChange,
-    handleSelectedAirport,
-  } = props;
+  const { formData, airportData, handleInputChange, handleSelectedAirport } =
+    props;
 
   return (
     <>
@@ -19,7 +14,7 @@ export default function FormInput(props) {
           id="daparture"
           name="departure"
           list="departureAirports"
-          value={selectedAirport.departure}
+          value={formData.departure}
           onChange={(e) => handleInputChange(e)}
           onInput={(e) => handleSelectedAirport(e, "departure")}
           required
@@ -46,7 +41,7 @@ export default function FormInput(props) {
           id="arrival"
           name="arrival"
           list="arrivalAirports"
-          value={selectedAirport.arrival}
+          value={formData.arrival}
           onChange={handleInputChange}
           onInput={(e) => handleSelectedAirport(e, "arrival")}
           required

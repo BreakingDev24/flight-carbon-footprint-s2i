@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FormInput from "../FormInput/FormInput";
 import FootprintCalculator from "../FootprintCalculator/FootprintCalculator";
 import style from "./FootprintForm.module.css";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAirports } from "../api/airportApi";
 export default function FootprintForm() {
@@ -21,11 +20,6 @@ export default function FootprintForm() {
     queryFn: fetchAirports,
   });
 
-  const [selectedAirport, setSelectedAirport] = useState({
-    departure: "",
-    arrival: "",
-  });
-
   const [flightData, setFlightData] = useState(null);
 
   const handleInputChange = (e) => {
@@ -39,14 +33,8 @@ export default function FootprintForm() {
 
   const handleSelectedAirport = (e, field) => {
     const value = e.target.value;
-
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [field]: value,
-    }));
-
-    setSelectedAirport((prevSelected) => ({
-      ...prevSelected,
       [field]: value,
     }));
   };
@@ -70,7 +58,6 @@ export default function FootprintForm() {
       <form onSubmit={handleFlightDataSubmit}>
         <FormInput
           formData={formData}
-          selectedAirport={selectedAirport}
           airportData={airportData}
           handleInputChange={handleInputChange}
           handleSelectedAirport={handleSelectedAirport}

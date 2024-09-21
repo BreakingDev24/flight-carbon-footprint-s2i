@@ -27,10 +27,13 @@ export default function FootprintCalculator({
     <div className={style.footprintContainer}>
       {footprint ? (
         <div className={style.resultsContainer}>
-          <h2>Footprint:</h2>
-          <p>{footprint * passengers} kg CO2</p>
+          <p className={style.footprint}>
+            <span>Footprint:</span> <span>{footprint * passengers} kg CO2</span>
+          </p>
           {passengers > 1 && (
-            <p>Footprints per passenger: {footprint} kg CO2</p>
+            <p className={style.footprintPassengers}>
+              Footprints per passenger: {footprint} kg CO2
+            </p>
           )}
         </div>
       ) : (

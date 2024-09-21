@@ -55,6 +55,10 @@ export default function FootprintForm() {
   };
   return (
     <div className={style.formContainer}>
+      <div className={style.titleContainer}>
+        <h2>Flight FootPrint Calculator</h2>
+      </div>
+
       <form onSubmit={handleFlightDataSubmit}>
         <FormInput
           formData={formData}

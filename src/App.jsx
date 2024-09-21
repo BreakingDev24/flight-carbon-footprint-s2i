@@ -1,11 +1,15 @@
 import { useState } from "react";
-import FootprintForm from "./components/FootprintForm/FootprintForm";
+import AppLayoutContainer from "./components/AppLayoutContainer/AppLayoutContainer";
+// import FootprintForm from "./components/FootprintForm/FootprintForm";
+import Home from "./pages/Home/Home";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <FootprintForm />
+      <AppLayoutContainer>
+        <Home />
+      </AppLayoutContainer>
     </>
   );
 }

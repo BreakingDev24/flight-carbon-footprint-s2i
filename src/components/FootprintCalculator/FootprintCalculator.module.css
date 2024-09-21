@@ -1,0 +1,13 @@
+.resultsContainer {
+  display: grid;
+  gap: 5px;
+}
+
+.footprint {
+  font-size: 1.3rem;
+  font-weight: bolder;
+}
+
+.footprintPassengers {
+  font-size: 0.9rem;
+}

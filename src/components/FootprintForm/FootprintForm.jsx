@@ -1,5 +1,7 @@
 import { useState } from "react";
-import FormInput from "../FormInput/FormInput";
+import FormInput from "../FormComponents/FormInput";
+import NumberInput from "../FormComponents/NumberInput";
+
 import FootprintCalculator from "../FootprintCalculator/FootprintCalculator";
 import style from "./FootprintForm.module.css";
 import { useQuery } from "@tanstack/react-query";
@@ -22,8 +24,8 @@ export default function FootprintForm() {
 
   const [flightData, setFlightData] = useState(null);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (name) => (e, newValue) => {
+    const value = newValue !== undefined ? newValue : e.target.value;
 
     setFormData((prevData) => ({
       ...prevData,
@@ -31,23 +33,11 @@ export default function FootprintForm() {
     }));
   };
 
-  const handleSelectedAirport = (e, field) => {
-    const value = e.target.value;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [field]: value,
-    }));
-  };
   const handleFlightDataSubmit = (e) => {
     e.preventDefault();
     const departureCode = formData.departure.split(" - ")[0];
     const arrivalCode = formData.arrival.split(" - ")[0];
     setFlightData({
-      departure: departureCode,
-      arrival: arrivalCode,
-      passengers: formData.passengers,
-    });
-    console.log({
       departure: departureCode,
       arrival: arrivalCode,
       passengers: formData.passengers,
@@ -61,11 +51,27 @@ export default function FootprintForm() {
 
       <form onSubmit={handleFlightDataSubmit}>
         <FormInput
-          formData={formData}
+          id="departure"
+          label="Departure"
+          value={formData.departure}
           airportData={airportData}
-          handleInputChange={handleInputChange}
-          handleSelectedAirport={handleSelectedAirport}
+          onChange={handleInputChange("departure")}
         />
+        <FormInput
+          id="arrival"
+          label="Arrival"
+          value={formData.arrival}
+          airportData={airportData}
+          onChange={handleInputChange("arrival")}
+        />
+
+        <NumberInput
+          label="Passengers"
+          value={formData.passengers}
+          onChange={handleInputChange("passengers")}
+        />
+
+        <button type="submit">Calculate</button>
       </form>
       {flightData && (
         <FootprintCalculator

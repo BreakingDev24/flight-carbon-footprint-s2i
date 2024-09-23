@@ -8,19 +8,16 @@ import {
   Typography,
   Toolbar,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
-// import Toolbar from "@mui/material/Toolbar";
-// import IconButton from "@mui/material/IconButton";
+
 import MenuIcon from "@mui/icons-material/Menu";
-// import Menu from "@mui/material/Menu";
-// import MenuItem from "@mui/material/MenuItem";
-// import Typography from "@mui/material/Typography";
-// import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const isMobile = useMediaQuery("(max-width:600px)");
 
+  const theme = useTheme();
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -30,7 +27,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar className="navbar" position="fixed">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           My App
@@ -49,10 +46,10 @@ export default function Navbar() {
             <MenuItem component={Link} to="/" onClick={handleMenuClose}>
               Home
             </MenuItem>
-            <MenuItem component={Link} to="/" onClick={handleMenuClose}>
+            <MenuItem component={Link} to="/about" onClick={handleMenuClose}>
               About
             </MenuItem>
-            <MenuItem component={Link} to="/" onClick={handleMenuClose}>
+            <MenuItem component={Link} to="/faq" onClick={handleMenuClose}>
               FAQ
             </MenuItem>
           </>
@@ -70,8 +67,8 @@ export default function Navbar() {
           <MenuItem component={Link} to="/about" onClick={handleMenuClose}>
             About
           </MenuItem>
-          <MenuItem component={Link} to="/contact" onClick={handleMenuClose}>
-            Contact
+          <MenuItem component={Link} to="/Faq" onClick={handleMenuClose}>
+            FAQ
           </MenuItem>
         </Menu>
       )}

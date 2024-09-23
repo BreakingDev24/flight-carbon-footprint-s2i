@@ -1,10 +1,12 @@
-import style from "./Home.module.css";
+import { Box } from "@mui/material";
 import FootprintForm from "../../components/FootprintForm/FootprintForm";
 import PageLayoutContainer from "../../components/PageLayoutContainer/PageLayoutContainer";
 export default function Home() {
   return (
     <PageLayoutContainer>
-      <FootprintForm></FootprintForm>
+      <Box component="section">
+        <FootprintForm></FootprintForm>
+      </Box>
     </PageLayoutContainer>
   );
 }

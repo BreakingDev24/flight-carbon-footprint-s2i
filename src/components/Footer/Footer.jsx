@@ -11,9 +11,6 @@ export default function Footer() {
         color: "white",
         py: 3,
         textAlign: "center",
-        position: "absolute",
-        bottom: 0,
-        left: 0,
         width: "100%",
       }}
     >

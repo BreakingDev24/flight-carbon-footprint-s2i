@@ -1,5 +1,12 @@
-import style from "./AppLayoutContainer.module.css";
+import { Container } from "@mui/material";
 
 export default function LayoutContainer({ children }) {
-  return <div className={style.container}>{children}</div>;
+  return (
+    <Container
+      maxWidth="lg"
+      sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
+      {children}
+    </Container>
+  );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Box, useTheme } from "@mui/material";
 import FormInput from "../FormComponents/FormInput";
 import NumberInput from "../FormComponents/NumberInput";
 
@@ -43,8 +44,18 @@ export default function FootprintForm() {
       passengers: formData.passengers,
     });
   };
+
+  const theme = useTheme();
+
   return (
-    <div className={style.formContainer}>
+    <Box
+      sx={{
+        p: 3,
+        backgroundColor: theme.palette.secondary.main,
+        boxShadow: 6,
+        borderRadius: 2,
+      }}
+    >
       <div className={style.titleContainer}>
         <h2>Flight FootPrint Calculator</h2>
       </div>
@@ -80,6 +91,6 @@ export default function FootprintForm() {
           passengers={flightData.passengers}
         />
       )}
-    </div>
+    </Box>
   );
 }

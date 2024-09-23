@@ -1,11 +1,6 @@
-import {
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  Box,
-} from "@mui/material";
+import { Container, Typography, Card, CardContent, Box } from "@mui/material";
+
+import Grid from "@mui/material/Grid2";
 
 import PageLayoutContainer from "../../components/PageLayoutContainer/PageLayoutContainer";
 
@@ -32,8 +27,8 @@ export default function About() {
           </Typography>
 
           <Grid container spacing={4} sx={{ marginTop: 4 }}>
-            <Grid item xs={12} sm={6}>
-              <Card>
+            <Grid size={{ xs: 12, sm: 6 }}>
+              <Card sx={{ height: "100%" }}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     HTML
@@ -45,8 +40,8 @@ export default function About() {
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
-              <Card>
+            <Grid size={{ xs: 12, sm: 6 }}>
+              <Card sx={{ height: "100%" }}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     CSS
@@ -58,8 +53,8 @@ export default function About() {
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
-              <Card>
+            <Grid size={{ xs: 12, sm: 6 }}>
+              <Card sx={{ height: "100%" }}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     JavaScript
@@ -71,8 +66,8 @@ export default function About() {
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
-              <Card>
+            <Grid size={{ xs: 12, sm: 6 }}>
+              <Card sx={{ height: "100%" }}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     React

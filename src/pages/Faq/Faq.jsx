@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Box,
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -28,18 +29,36 @@ export default function Faq() {
 
   return (
     <PageLayoutContainer>
-      <div>
-        {faqs.map((faq, index) => (
-          <Accordion key={index}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography variant="h5">{faq.question}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{faq.answer}</Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))}
-      </div>
+      <Box
+        component="section"
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          gap: "50px",
+          paddingTop: "30px",
+        }}
+      >
+        <Typography variant="h3" sx={{ textAlign: "center" }}>
+          Flying Awareness Questioned
+        </Typography>
+        <Typography component="p" sx={{ textAlign: "center" }}>
+          Understanding your carbon footprint helps you make more sustainable
+          travel choices.
+        </Typography>
+        <Box className="faqContainer" maxWidth="md">
+          {faqs.map((faq, index) => (
+            <Accordion key={index}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography variant="h5">{faq.question}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>{faq.answer}</Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </Box>
+      </Box>
     </PageLayoutContainer>
   );
 }

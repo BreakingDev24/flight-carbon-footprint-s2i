@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const calculateFootprint = async ({ departure, arrival }) => {
+export const fetchCalculateFootprint = async ({ departure, arrival }) => {
   const response = await axios.get(
     "https://api.goclimate.com/v1/flight_footprint",
     {

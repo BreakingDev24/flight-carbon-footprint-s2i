@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   AppBar,
   IconButton,
@@ -30,7 +30,7 @@ export default function Navbar() {
     <AppBar className="navbar" position="fixed">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          My App
+          TravelGreen
         </Typography>
         {isMobile ? (
           <IconButton
@@ -43,13 +43,34 @@ export default function Navbar() {
           </IconButton>
         ) : (
           <>
-            <MenuItem component={Link} to="/" onClick={handleMenuClose}>
+            <MenuItem
+              component={NavLink}
+              to="/"
+              onClick={handleMenuClose}
+              style={({ isActive }) => ({
+                fontWeight: isActive ? "bolder" : "normal",
+              })}
+            >
               Home
             </MenuItem>
-            <MenuItem component={Link} to="/about" onClick={handleMenuClose}>
+            <MenuItem
+              component={NavLink}
+              to="/about"
+              onClick={handleMenuClose}
+              style={({ isActive }) => ({
+                fontWeight: isActive ? "bolder" : "normal",
+              })}
+            >
               About
             </MenuItem>
-            <MenuItem component={Link} to="/faq" onClick={handleMenuClose}>
+            <MenuItem
+              component={NavLink}
+              to="/faq"
+              onClick={handleMenuClose}
+              style={({ isActive }) => ({
+                fontWeight: isActive ? "bolder" : "normal",
+              })}
+            >
               FAQ
             </MenuItem>
           </>
@@ -61,13 +82,34 @@ export default function Navbar() {
           open={Boolean(anchorEl)}
           onClose={handleMenuClose}
         >
-          <MenuItem component={Link} to="/" onClick={handleMenuClose}>
+          <MenuItem
+            component={NavLink}
+            to="/"
+            onClick={handleMenuClose}
+            style={({ isActive }) => ({
+              fontWeight: isActive ? "bolder" : "normal",
+            })}
+          >
             Home
           </MenuItem>
-          <MenuItem component={Link} to="/about" onClick={handleMenuClose}>
+          <MenuItem
+            component={NavLink}
+            to="/about"
+            onClick={handleMenuClose}
+            style={({ isActive }) => ({
+              fontWeight: isActive ? "bolder" : "normal",
+            })}
+          >
             About
           </MenuItem>
-          <MenuItem component={Link} to="/Faq" onClick={handleMenuClose}>
+          <MenuItem
+            component={NavLink}
+            to="/Faq"
+            onClick={handleMenuClose}
+            style={({ isActive }) => ({
+              fontWeight: isActive ? "bolder" : "normal",
+            })}
+          >
             FAQ
           </MenuItem>
         </Menu>

@@ -40,6 +40,7 @@ export default function Faq() {
           flex: 1,
           display: "flex",
           flexDirection: "column",
+          justifyContent: "center",
           gap: "50px",
           paddingTop: "30px",
         }}
@@ -51,7 +52,7 @@ export default function Faq() {
           Understanding your carbon footprint helps you make more sustainable
           travel choices.
         </Typography>
-        <Box className="faqContainer" maxWidth="md">
+        <Box className="faqContainer" maxWidth="sm">
           {faqs.map((faq, index) => (
             <Accordion key={index}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>

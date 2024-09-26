@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, Button, Typography } from "@mui/material";
 import FormInput from "../FormComponents/FormInput";
 import NumberInput from "../FormComponents/NumberInput";
 import { useFootprint } from "../context/footprintContext";
 import FootprintCalculator from "../FootprintCalculator/FootprintCalculator";
-import style from "./FootprintForm.module.css";
 
 import { useAirportContext } from "../context/airportContext";
 export default function FootprintForm() {
@@ -42,17 +41,30 @@ export default function FootprintForm() {
   return (
     <Box
       sx={{
+        width: "80%",
+        maxWidth: "700px",
         p: 3,
         backgroundColor: theme.palette.secondary.main,
         boxShadow: 6,
         borderRadius: 2,
+        display: "grid",
+        gap: "20px",
       }}
     >
-      <div className={style.titleContainer}>
-        <h2>Flight FootPrint Calculator</h2>
-      </div>
+      <Box className="titleContainer">
+        <Typography
+          variant="h2"
+          sx={{ fontSize: "2rem", textAlign: "center", fontWeight: 500 }}
+        >
+          Flight FootPrint Calculator
+        </Typography>
+      </Box>
 
-      <form onSubmit={handleSubmit}>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ display: "grid", gap: "10px" }}
+      >
         <FormInput
           id="departure"
           label="Departure"
@@ -74,8 +86,14 @@ export default function FootprintForm() {
           onChange={handleInputChange("passengers")}
         />
 
-        <button type="submit">Calculate</button>
-      </form>
+        <Button
+          variant="outlined"
+          type="submit"
+          sx={{ width: "fit-content", margin: "auto" }}
+        >
+          Calculate
+        </Button>
+      </Box>
       {footprint && <FootprintCalculator />}
     </Box>
   );

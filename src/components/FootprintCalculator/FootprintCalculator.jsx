@@ -1,25 +1,25 @@
-import style from "./FootprintCalculator.module.css";
 import { useFootprint } from "../context/footprintContext";
+import { Box, Typography } from "@mui/material";
 export default function FootprintCalculator() {
   const { footprint, isLoading, error, flightData } = useFootprint();
 
   return (
-    <div className={style.footprintContainer}>
+    <Box className="footprintContainer">
       {footprint ? (
-        <div className={style.resultsContainer}>
-          <p className={style.footprint}>
+        <Box className="resultsContainer">
+          <Typography className="footprintResults" sx={{ fontSize: "1.5rem" }}>
             <span>Footprint:</span>{" "}
             <span>{footprint * flightData.passengers} kg CO2</span>
-          </p>
+          </Typography>
           {flightData.passengers > 1 && (
-            <p className={style.footprintPassengers}>
+            <Typography className="footprintPassengers">
               Footprints per passenger: {footprint} kg CO2
-            </p>
+            </Typography>
           )}
-        </div>
+        </Box>
       ) : (
-        <p>No Results Available</p>
+        <Typography>No Results Available</Typography>
       )}
-    </div>
+    </Box>
   );
 }

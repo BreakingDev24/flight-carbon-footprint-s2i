@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PageLayoutContainer from "../../components/PageLayoutContainer/PageLayoutContainer";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Faq() {
   const faqs = [
@@ -32,7 +32,7 @@ export default function Faq() {
   return (
     <PageLayoutContainer>
       <Helmet>
-        <title>FFC - FAQ</title>
+        <title>TG - FAQ</title>
       </Helmet>
       <Box
         component="section"

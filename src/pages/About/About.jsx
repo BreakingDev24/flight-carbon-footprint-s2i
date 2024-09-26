@@ -3,13 +3,13 @@ import { Container, Typography, Card, CardContent, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
 import PageLayoutContainer from "../../components/PageLayoutContainer/PageLayoutContainer";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 export default function About() {
   return (
     <>
       <PageLayoutContainer>
         <Helmet>
-          <title>FFC - About</title>
+          <title>TG - About</title>
         </Helmet>
         <Container maxWidth="md" sx={{ marginTop: 4 }}>
           <Typography variant="h3" align="center" gutterBottom>

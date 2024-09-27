@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, useTheme, Button, Typography } from "@mui/material";
+import { Box, useTheme, Button, Typography, Alert } from "@mui/material";
 import FormInput from "../FormComponents/FormInput";
 import NumberInput from "../FormComponents/NumberInput";
 import { useFootprint } from "../context/footprintContext";
@@ -14,6 +14,7 @@ export default function FootprintForm() {
     arrival: "",
     passengers: 1,
   });
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleInputChange = (name) => (e, newValue) => {
     const value = newValue !== undefined ? newValue : e.target.value;
@@ -31,10 +32,16 @@ export default function FootprintForm() {
       passengers: 1,
     });
     resetFootprint();
+    setErrorMsg("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMsg("");
+    if (!formData.departure || !formData.arrival) {
+      setErrorMsg("You must select an airport.");
+      return;
+    }
     const departureCode = formData.departure.split(" - ")[0];
     const arrivalCode = formData.arrival.split(" - ")[0];
     handleFlightDataSubmit({
@@ -94,18 +101,24 @@ export default function FootprintForm() {
           onChange={handleInputChange("passengers")}
         />
 
-        <Button
-          variant="outlined"
-          type="submit"
-          sx={{ width: "fit-content", margin: "auto" }}
+        <Box
+          className="buttonContainer"
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-around",
+          }}
         >
-          Calculate
-        </Button>
+          <Button variant="outlined" type="submit">
+            Calculate
+          </Button>
 
-        <Button type="button" variant="outlined" onClick={handleReset}>
-          Reset
-        </Button>
+          <Button type="button" onClick={handleReset}>
+            Reset
+          </Button>
+        </Box>
       </Box>
+      {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
       {footprint && <FootprintCalculator />}
     </Box>
   );

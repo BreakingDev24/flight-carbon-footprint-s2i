@@ -2,6 +2,9 @@
 Travel Green is a project developed as the final part of the Frontend Developer course at start2impact. 
 This is a web application built with React that calculates the carbon footprint of a flight using the GoClimate API. The app allows users to input flight details, then retrieves and displays the estimated carbon emissions for their trip.
 
+👉 **[Live Demo](https://whatcabbage.netlify.app/)**
+
+
 ## Table of Contents
 - [Features](#features)
 - [Installation](#installation)

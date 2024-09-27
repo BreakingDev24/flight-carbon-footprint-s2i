@@ -21,7 +21,7 @@ export default function Footer() {
 
       <Box sx={{ mt: 1 }}>
         <Link
-          href="https://github.com/yourusername"
+          href="https://github.com/BreakingDev24"
           color="inherit"
           target="_blank"
           rel="noopener"
@@ -29,7 +29,7 @@ export default function Footer() {
           <GitHubIcon sx={{ mx: 1 }} />
         </Link>
         <Link
-          href="https://linkedin.com/in/yourusername"
+          href="https://www.linkedin.com/in/antonio-avolio-015936232/"
           color="inherit"
           target="_blank"
           rel="noopener"

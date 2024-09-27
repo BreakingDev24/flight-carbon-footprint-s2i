@@ -64,7 +64,7 @@ This project uses the following major libraries:
 
 ## GoClimate API
 
-The GoClimate API is used to calculate the carbon footprint of flights based on specific route data. You can find more information on how to get an API key and use it in your project from the official [GoClimate API documentation](https://www.goclimate.com/api).
+The GoClimate API is used to calculate the carbon footprint of flights based on specific route data. You can find more information on how to get an API key and use it in your project from the official [GoClimate API documentation](https://api.goclimate.com/docs).
 
 ## License
 

@@ -19,6 +19,14 @@ export function FootprintProvider({ children }) {
     setFlightData(data);
   };
 
+  const resetFootprint = () => {
+    setFlightData({
+      departure: "",
+      arrival: "",
+      passengers: 1,
+    });
+  };
+
   return (
     <FootprintContext.Provider
       value={{
@@ -27,6 +35,7 @@ export function FootprintProvider({ children }) {
         error,
         flightData,
         handleFlightDataSubmit,
+        resetFootprint,
       }}
     >
       {children}

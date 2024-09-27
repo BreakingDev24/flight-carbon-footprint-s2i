@@ -7,8 +7,7 @@ import FootprintCalculator from "../FootprintCalculator/FootprintCalculator";
 
 import { useAirportContext } from "../context/airportContext";
 export default function FootprintForm() {
-  const { handleFlightDataSubmit, footprint, isFpLoading, fpError } =
-    useFootprint();
+  const { handleFlightDataSubmit, footprint, resetFootprint } = useFootprint();
   const { airportData, isLoading, error } = useAirportContext();
   const [formData, setFormData] = useState({
     departure: "",
@@ -23,6 +22,15 @@ export default function FootprintForm() {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleReset = () => {
+    setFormData({
+      departure: "",
+      arrival: "",
+      passengers: 1,
+    });
+    resetFootprint();
   };
 
   const handleSubmit = (e) => {
@@ -92,6 +100,10 @@ export default function FootprintForm() {
           sx={{ width: "fit-content", margin: "auto" }}
         >
           Calculate
+        </Button>
+
+        <Button type="button" variant="outlined" onClick={handleReset}>
+          Reset
         </Button>
       </Box>
       {footprint && <FootprintCalculator />}

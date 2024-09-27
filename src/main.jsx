@@ -6,11 +6,10 @@ import { FootprintProvider } from "./components/context/footprintContext.jsx";
 import { AirportProvider } from "./components/context/airportContext.jsx";
 import { HelmetProvider } from "react-helmet-async";
 
-import App from "./App.jsx";
 import "./index.css";
 import theme from "./components/theme/theme.jsx";
+import App from "./App.jsx";
 const queryClient = new QueryClient();
-// const theme = createTheme(); // Crea un tema di default
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

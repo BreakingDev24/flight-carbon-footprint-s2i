@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchCalculateFootprint } from "./footprintApi";
+import { useFlightData } from "../context/flightDataContext";
 
-export function useQueryFootprint(departureAirport, arrivalAirport) {
+export function useQueryFootprint() {
+  const { flightData } = useFlightData();
+  const { departure, arrival } = flightData;
   return useQuery({
-    queryKey: ["footprint", departureAirport, arrivalAirport],
+    queryKey: ["footprint", departure, arrival],
     queryFn: () =>
       fetchCalculateFootprint({
-        departure: departureAirport,
-        arrival: arrivalAirport,
+        departure,
+        arrival,
       }),
-    enabled: !!departureAirport && !!arrivalAirport,
+    enabled: !!departure && !!arrival,
   });
 }

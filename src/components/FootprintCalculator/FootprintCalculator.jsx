@@ -1,7 +1,9 @@
-import { useFootprint } from "../context/footprintContext";
+import { useQueryFootprint } from "../api/useQueryFootprint";
+import { useFlightData } from "../context/flightDataContext";
 import { Box, Typography } from "@mui/material";
 export default function FootprintCalculator() {
-  const { footprint, isLoading, error, flightData } = useFootprint();
+  const { flightData } = useFlightData();
+  const { data: footprint, isLoading, error } = useQueryFootprint();
 
   return (
     <Box className="footprintContainer">

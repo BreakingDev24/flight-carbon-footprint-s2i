@@ -1,19 +1,13 @@
 import { useContext, createContext, useState } from "react";
-import { useQueryFootprint } from "../api/useQueryFootprint";
 
-const FootprintContext = createContext();
+const FlightDataContext = createContext();
 
-export function FootprintProvider({ children }) {
+export function FlightDataProvider({ children }) {
   const [flightData, setFlightData] = useState({
     departure: "",
     arrival: "",
     passengers: 1,
   });
-  const {
-    data: footprint,
-    isLoading,
-    error,
-  } = useQueryFootprint(flightData.departure, flightData.arrival);
 
   const handleFlightDataSubmit = (data) => {
     setFlightData(data);
@@ -28,19 +22,16 @@ export function FootprintProvider({ children }) {
   };
 
   return (
-    <FootprintContext.Provider
+    <FlightDataContext.Provider
       value={{
-        footprint,
-        isLoading,
-        error,
         flightData,
         handleFlightDataSubmit,
         resetFootprint,
       }}
     >
       {children}
-    </FootprintContext.Provider>
+    </FlightDataContext.Provider>
   );
 }
 
-export const useFootprint = () => useContext(FootprintContext);
+export const useFlightData = () => useContext(FlightDataContext);

@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Box, useTheme, Button, Typography, Alert } from "@mui/material";
 import FormInput from "../FormComponents/FormInput";
 import NumberInput from "../FormComponents/NumberInput";
-import { useFootprint } from "../context/footprintContext";
+import { useFlightData } from "../context/flightDataContext";
 import FootprintCalculator from "../FootprintCalculator/FootprintCalculator";
-
+import { useQueryFootprint } from "../api/useQueryFootprint";
 import { useAirportContext } from "../context/airportContext";
 export default function FootprintForm() {
-  const { handleFlightDataSubmit, footprint, resetFootprint } = useFootprint();
+  const { handleFlightDataSubmit, resetFootprint } = useFlightData();
+  const { data: footprint } = useQueryFootprint();
+
   const { airportData, isLoading, error } = useAirportContext();
   const [formData, setFormData] = useState({
     departure: "",
